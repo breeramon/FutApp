@@ -1,18 +1,17 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useColorScheme } from 'react-native';
+import { Stack } from 'expo-router';
+import { SQLiteProvider } from 'expo-sqlite';
 
-import { AnimatedSplashOverlay } from '@/components/animated-icon';
-import AppTabs from '@/components/app-tabs';
+import { migrarBanco } from '@/banco/migracoes';
 
-SplashScreen.preventAutoHideAsync();
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+/**
+ * Layout raiz: envolve o app inteiro com o banco de dados.
+ * O SQLiteProvider abre o arquivo pelada.db e roda migrarBanco antes de mostrar as telas,
+ * então qualquer tela pode usar useSQLiteContext() sabendo que as tabelas já existem.
+ */
+export default function RootLayout() {
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <AnimatedSplashOverlay />
-      <AppTabs />
-    </ThemeProvider>
+    <SQLiteProvider databaseName="pelada.db" onInit={migrarBanco}>
+      <Stack />
+    </SQLiteProvider>
   );
 }
