@@ -1,7 +1,9 @@
 import { Stack } from 'expo-router';
 import { SQLiteProvider } from 'expo-sqlite';
+import { StatusBar } from 'expo-status-bar';
 
 import { migrarBanco } from '@/banco/migracoes';
+import { cores } from '@/tema/tema';
 
 /**
  * Layout raiz: envolve o app inteiro com o banco de dados.
@@ -11,7 +13,10 @@ import { migrarBanco } from '@/banco/migracoes';
 export default function RootLayout() {
   return (
     <SQLiteProvider databaseName="pelada.db" onInit={migrarBanco}>
-      <Stack />
+      {/* Ícones da barra de status (hora, bateria) em preto, sobre o fundo branco. */}
+      <StatusBar style="dark" />
+      {/* Cada tela desenha o próprio cabeçalho (componente Cabecalho), então o padrão fica escondido. */}
+      <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: cores.fundo } }} />
     </SQLiteProvider>
   );
 }

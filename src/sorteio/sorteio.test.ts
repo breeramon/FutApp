@@ -1,3 +1,4 @@
+/// <reference types="node" />
 // Testes da lógica de sorteio. Rodam com o executor de testes do próprio Node: npm test
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
