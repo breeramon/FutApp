@@ -1,3 +1,4 @@
+import { router } from 'expo-router';
 import { useState, type ReactNode } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -38,8 +39,8 @@ const ABAS = [
 ] as const;
 
 /**
- * Catálogo provisório com todos os componentes da etapa 1, para conferir no emulador.
- * Será substituído pela tela "Início" na etapa 2.
+ * Catálogo com todos os componentes da etapa 1, para conferir no emulador.
+ * Só é acessível pela aba Ajustes enquanto o app está em desenvolvimento.
  */
 export default function Catalogo() {
   const [modalidade, setModalidade] = useState<CodigoModalidade>('futsal');
@@ -54,7 +55,7 @@ export default function Catalogo() {
       <Cabecalho
         titulo="Componentes"
         subtitulo="Etapa 1 · base visual do app"
-        onVoltar={() => {}}
+        onVoltar={() => router.back()}
         acao={<BotaoIcone icone="editar" rotulo="Editar" />}
       />
 

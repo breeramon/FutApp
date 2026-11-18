@@ -14,15 +14,17 @@ interface TelaProps {
   navegacao?: ReactNode;
   /** false para telas que já têm a própria lista rolável (FlatList). */
   rolavel?: boolean;
+  /** Reserva espaço no fim para a barra das abas, que é desenhada pelo layout das abas. */
+  espacoNavegacao?: boolean;
 }
 
 /**
  * Estrutura comum a todas as telas: fundo branco, respeita a área do relógio/câmera
  * no topo, rola o conteúdo, desvia do teclado e reserva espaço para o rodapé.
  */
-export function Tela({ children, rodape, navegacao, rolavel = true }: TelaProps) {
+export function Tela({ children, rodape, navegacao, rolavel = true, espacoNavegacao }: TelaProps) {
   const insets = useSafeAreaInsets();
-  const espacoFinal = (rodape || navegacao ? 120 : espaco.xxxl) + insets.bottom;
+  const espacoFinal = (rodape || navegacao || espacoNavegacao ? 120 : espaco.xxxl) + insets.bottom;
   const conteudo = (
     <View style={{ paddingTop: insets.top + espaco.sm, paddingHorizontal: espaco.xl, paddingBottom: espacoFinal }}>
       {children}

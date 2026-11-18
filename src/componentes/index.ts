@@ -6,6 +6,7 @@ export { BotaoIcone } from './BotaoIcone';
 export { CaixaSelecao, CampoBusca, CampoTexto, LinhaInterruptor } from './Campos';
 export { Card } from './Card';
 export { Chip } from './Chip';
+export { Carregando, EstadoVazio } from './Estados';
 export { Etiqueta, EtiquetaPosicao, type TomEtiqueta } from './Etiqueta';
 export { Icone, type NomeIcone } from './Icone';
 export { Avatar, BolaCor, ItemLista, TituloSecao } from './Listas';
